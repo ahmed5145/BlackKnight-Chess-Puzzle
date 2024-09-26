@@ -1,4 +1,5 @@
 # Black Knight Puzzle Game
+<img width="798" alt="Screenshot 2024-09-26 at 2 18 42 PM" src="https://github.com/user-attachments/assets/0687887a-bbc7-4af9-8423-cedc25594d5f">
 
 ## Description
 
