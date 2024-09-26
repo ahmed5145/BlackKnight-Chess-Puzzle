@@ -19,6 +19,7 @@ black_pieces = ['knight']
 black_locations = [(0, 0)]
 selection = 100
 valid_moves = []
+move_count = 0  # New variable to track number of moves
 
 black_knight = pygame.image.load('assets/images/black knight.png')
 black_knight = pygame.transform.scale(black_knight, (80, 80))
@@ -47,6 +48,7 @@ def draw_board():
     screen.blit(big_font.render('Black Knight:', True, 'black'), (0, 230))
     screen.blit(small_font.render('Use standard chess movements to get the Black Knight to', True, 'black'), (20, 320))
     screen.blit(small_font.render('the light blue square!! (CAPTURES NOT ALLOWED, NO COLOR TURNS).', True, 'black'), (20, 340))
+    screen.blit(small_font.render(f'Moves: {move_count}', True, 'black'), (650, 20))  # Display move count
     for i in range(7):
         pygame.draw.line(screen, 'black', (0, 100 * i), (600, 100 * i), 2)
         pygame.draw.line(screen, 'black', (100 * i, 0), (100 * i, 200), 2)
@@ -66,6 +68,18 @@ def draw_pieces():
         screen.blit(black_images[index], (black_locations[i][0] * 100 + 10, black_locations[i][1] * 100 + 10))
         if selection == i + len(white_pieces):
             pygame.draw.rect(screen, 'blue', [black_locations[i][0] * 100 + 1, black_locations[i][1] * 100 + 1, 100, 100], 2)
+
+def draw_play_again_button():
+    pygame.draw.rect(screen, 'red', [650, 400, 120, 50])  # Draw button rectangle
+    screen.blit(small_font.render('Play  Again', True, 'black'), (660, 415))  # Draw button text
+
+def reset_game():
+    global white_locations, black_locations, move_count, winner
+    white_locations = [(1, 0), (2, 0), (3, 0), (4, 0), (5, 0),
+                       (0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (4,2)]
+    black_locations = [(0, 0)]
+    move_count = 0
+    winner = ""
 
 def check_options(piece, location):
     moves_list = []
@@ -127,6 +141,7 @@ while run:
     screen.fill('dark gray')
     draw_board()
     draw_pieces()
+    draw_play_again_button()
     
     if selection != 100:
         if selection < len(white_pieces):
@@ -138,33 +153,38 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and winner == "":
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and winner =="":
             x_coord = event.pos[0] // 100
             y_coord = event.pos[1] // 100
             click_coords = (x_coord, y_coord)
-            
-            if click_coords in white_locations:
-                selection = white_locations.index(click_coords)
-            elif click_coords in black_locations:
-                selection = black_locations.index(click_coords) + len(white_pieces)
-            elif selection != 100 and click_coords in valid_moves:
-                if selection < len(white_pieces):
-                    white_locations[selection] = click_coords
-                else:
-                    black_locations[selection - len(white_pieces)] = click_coords
+        # Check if the "Play Again" button is clicked
+            if 650 <= event.pos[0] <= 770 and 400 <= event.pos[1] <= 450:
+                reset_game()
+        # Continue the rest of the click handling if no winner
+            if winner == "":
+                if click_coords in white_locations:
+                    selection = white_locations.index(click_coords)
+                elif click_coords in black_locations:
+                    selection = black_locations.index(click_coords) + len(white_pieces)
+                elif selection != 100 and click_coords in valid_moves:
+                    if selection < len(white_pieces):
+                        white_locations[selection] = click_coords
+                    else:
+                        black_locations[selection - len(white_pieces)] = click_coords
+
+                        # Check win condition
+                        if black_locations[0] == (5, 2):
+                            winner = f"Black Knight wins in {move_count} moves!"
                     
-                    # Check win condition
-                    if black_locations[0] == (5, 2):
-                        winner = "Black Knight wins!"
-                
-                selection = 100
-                valid_moves = []
-            else:
-                selection = 100
-                valid_moves = []
+                    move_count += 1  # Increment move count
+                    selection = 100
+                    valid_moves = []
+                else:
+                    selection = 100
+                    valid_moves = []
 
     if winner:
-        screen.blit(big_font.render(winner, True, 'red'), (200, 200))
+        screen.blit(big_font.render(winner, True, 'gold'), (100, 200))
 
     pygame.display.flip()
 
