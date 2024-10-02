@@ -5,9 +5,9 @@ WIDTH = 800
 HEIGHT = 500
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption("BlackKnight Puzzle")
-pygame.font.Font("build/web/assets/NightPumpkind-1GpGv.ttf", 20)
-small_font = pygame.font.Font("build/web/assets/Blacknorthdemo-mLE25.ttf", 20)
-big_font = pygame.font.Font("build/web/assets/Blacknorthdemo-mLE25.ttf", 60)
+pygame.font.Font("assets/NightPumpkind-1GpGv.ttf", 20)
+small_font = pygame.font.Font("assets/Blacknorthdemo-mLE25.ttf", 20)
+big_font = pygame.font.Font("assets/Blacknorthdemo-mLE25.ttf", 60)
 timer = pygame.time.Clock()
 fps = 60
 
