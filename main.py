@@ -5,9 +5,9 @@ WIDTH = 800
 HEIGHT = 500
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption("BlackKnight Puzzle")
-pygame.font.Font("NightPumpkind-1GpGv.ttf", 20)
-small_font = pygame.font.Font("Blacknorthdemo-mLE25.ttf", 20)
-big_font = pygame.font.Font("Blacknorthdemo-mLE25.ttf", 60)
+pygame.font.Font("build/web/assets/NightPumpkind-1GpGv.ttf", 20)
+small_font = pygame.font.Font("build/web/assets/Blacknorthdemo-mLE25.ttf", 20)
+big_font = pygame.font.Font("build/web/assets/Blacknorthdemo-mLE25.ttf", 60)
 timer = pygame.time.Clock()
 fps = 60
 
@@ -21,13 +21,13 @@ selection = 100
 valid_moves = []
 move_count = 0  # New variable to track number of moves
 
-black_knight = pygame.image.load('build/web/images/black knight.png')
+black_knight = pygame.image.load('build/web/assets/images/black knight.png')
 black_knight = pygame.transform.scale(black_knight, (80, 80))
-white_rook = pygame.image.load('build/web/images/white rook.png')
+white_rook = pygame.image.load('build/web/assets/images/white rook.png')
 white_rook = pygame.transform.scale(white_rook, (80, 80))
-white_knight = pygame.image.load('build/web/images/white knight.png')
+white_knight = pygame.image.load('build/web/assets/images/white knight.png')
 white_knight = pygame.transform.scale(white_knight, (80, 80))
-white_bishop = pygame.image.load('build/web/images/white bishop.png')
+white_bishop = pygame.image.load('build/web/assets/images/white bishop.png')
 white_bishop = pygame.transform.scale(white_bishop, (80, 80))
 
 white_images = [white_knight, white_bishop,  white_rook]
