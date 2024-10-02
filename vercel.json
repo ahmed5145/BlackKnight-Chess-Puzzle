@@ -2,10 +2,9 @@
     "builds": [
       {
         "src": "build/web/**/*",
-        "use": "@vercel/static-build"
+        "use": "@vercel/static"
       }
     ],
-    "outputDirectory": "build/web",
     "routes": [
       {
         "src": "/(.*)",
