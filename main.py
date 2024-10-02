@@ -184,7 +184,7 @@ while run:
                     valid_moves = []
 
     if winner:
-        screen.blit(big_font.render(winner, True, 'gold'), (100, 200))
+        screen.blit(small_font.render(winner, True, 'gold'), (100, 200))
 
     pygame.display.flip()
 
