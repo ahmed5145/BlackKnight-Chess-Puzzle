@@ -5,9 +5,9 @@ WIDTH = 800
 HEIGHT = 500
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption("BlackKnight Puzzle")
-pygame.font.Font("assets/NightPumpkind-1GpGv.ttf", 20)
-small_font = pygame.font.Font("assets/Blacknorthdemo-mLE25.ttf", 20)
-big_font = pygame.font.Font("assets/Blacknorthdemo-mLE25.ttf", 60)
+pygame.font.Font("build/web/assets/NightPumpkind-1GpGv.ttf", 20)
+small_font = pygame.font.Font("build/web/assets/Blacknorthdemo-mLE25.ttf", 20)
+big_font = pygame.font.Font("build/web/assets/Blacknorthdemo-mLE25.ttf", 60)
 timer = pygame.time.Clock()
 fps = 60
 
@@ -21,13 +21,13 @@ selection = 100
 valid_moves = []
 move_count = 0  # New variable to track number of moves
 
-black_knight = pygame.image.load('assets/images/black knight.png')
+black_knight = pygame.image.load('build/web/assets/images/black knight.png')
 black_knight = pygame.transform.scale(black_knight, (80, 80))
-white_rook = pygame.image.load('assets/images/white rook.png')
+white_rook = pygame.image.load('build/web/assets/images/white rook.png')
 white_rook = pygame.transform.scale(white_rook, (80, 80))
-white_knight = pygame.image.load('assets/images/white knight.png')
+white_knight = pygame.image.load('build/web/assets/images/white knight.png')
 white_knight = pygame.transform.scale(white_knight, (80, 80))
-white_bishop = pygame.image.load('assets/images/white bishop.png')
+white_bishop = pygame.image.load('build/web/assets/images/white bishop.png')
 white_bishop = pygame.transform.scale(white_bishop, (80, 80))
 
 white_images = [white_knight, white_bishop,  white_rook]
@@ -143,7 +143,7 @@ while run:
     draw_pieces()
     draw_play_again_button()
     
-    if selection != 100:
+    if selection != 100 and winner == "":
         if selection < len(white_pieces):
             valid_moves = check_options(white_pieces[selection], white_locations[selection])
         else:
@@ -153,15 +153,18 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and winner =="":
-            x_coord = event.pos[0] // 100
-            y_coord = event.pos[1] // 100
-            click_coords = (x_coord, y_coord)
-        # Check if the "Play Again" button is clicked
+        
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            # Check if the "Play Again" button is clicked, reset game regardless of winner status
             if 650 <= event.pos[0] <= 770 and 400 <= event.pos[1] <= 450:
-                reset_game()
-        # Continue the rest of the click handling if no winner
-            if winner == "":
+                reset_game()  # Reset game when "Play Again" is clicked
+                winner = ""   # Clear the winner
+            
+            if winner == "":  # Only handle piece movement if there is no winner
+                x_coord = event.pos[0] // 100
+                y_coord = event.pos[1] // 100
+                click_coords = (x_coord, y_coord)
+                
                 if click_coords in white_locations:
                     selection = white_locations.index(click_coords)
                 elif click_coords in black_locations:
@@ -183,8 +186,9 @@ while run:
                     selection = 100
                     valid_moves = []
 
+    # Display the winner if there is one
     if winner:
-        screen.blit(small_font.render(winner, True, 'gold'), (100, 200))
+        screen.blit(big_font.render(winner, True, 'gold'), (0, 430))
 
     pygame.display.flip()
 
