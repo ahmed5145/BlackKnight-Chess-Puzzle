@@ -1,14 +1,14 @@
 <html lang="en-us"><script src="https://pygame-web.github.io/archives/0.9/pythons.js" type=module id=site data-LINES=57 data-CONSOLE=25 data-python=python3.12 data-os=vtx,fs,snd,gui async defer>#<!--
 
 print("""
-Loading blackknight.chess.puzzle from blackknight.chess.puzzle.apk
+Loading blackknightchesspuzzle from blackknightchesspuzzle.apk
     Pygbag Version : 0.9.2
     Template Version : 0.9.0
     Python  : 3.12
     CDN URL : https://pygame-web.github.io/archives/0.9/
     Screen  : 1280x720
-    Title   : blackknight.chess.puzzle
-    Folder  : blackknight.chess.puzzle
+    Title   : blackknightchesspuzzle
+    Folder  : blackknightchesspuzzle
     Authors : pgw
     SPDX-License-Identifier: cookiecutter.spdx
 
@@ -83,10 +83,13 @@ async def custom_site():
     platform.window.canvas.style.visibility = "visible"
 
 
-    bundle = "blackknight.chess.puzzle"
+
+    apk = "blackknightchesspuzzle.apk"
+
+    bundle = "blackknightchesspuzzle"
 
     # the C or js loader could do that but be explicit.
-    appdir = Path(f"/data/data/{bundle}") # /data/data/blackknight.chess.puzzle
+    appdir = Path(f"/data/data/{bundle}") # /data/data/blackknightchesspuzzle
     appdir.mkdir()
 
 
@@ -217,7 +220,7 @@ asyncio.run( custom_site() )
 //
 //
 //
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     {%- if cookiecutter.comment != "" -%}
 {{cookiecutter.comment}}
     {% endif %}
@@ -236,18 +239,16 @@ config = {
     user_canvas_managed : 0,
     ume_block : 1,
     can_close : 0,
-    archive : "blackknight.chess.puzzle",
+    archive : "blackknightchesspuzzle",
     gui_debug : 3,
     cdn : "https://pygame-web.github.io/archives/0.9/",
-    autorun : 1,
-    PYBUILD : "3.12",
-    initial_memory: 50331648,
-    disable_exception_catching: 0
+    autorun : 0,
+    PYBUILD : "3.12"
 }
 
 </script>
 
-    <title>blackknight.chess.puzzle</title>
+    <title>blackknightchesspuzzle</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

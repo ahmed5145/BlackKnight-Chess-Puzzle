@@ -1,0 +1,95 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+Thumbs.db
+
+# IDEs and editors #
+####################
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+# Python #
+##########
+*.pyc
+*.pyo
+__pycache__/
+
+# Node.js #
+###########
+node_modules/
+
+# Java #
+########
+*.class
+*.jar
+*.war
+*.ear
+
+# C/C++ #
+#########
+*.obj
+*.exe
+*.out
+*.app
+*.dSYM/
+*.lib
+*.a
+*.la
+*.lo
+*.def
+*.exp
+*.pdb
+*.ilk
+*.ds_store
+
+# Rust #
+########
+/target/
+
+# Go #
+######
+/bin/
+/pkg/
+
+# Ruby #
+########
+*.gem
+*.rbc
+.ruby-version
+.ruby-gemset
+
+#misc
+.venv
+.mypy_cache/
